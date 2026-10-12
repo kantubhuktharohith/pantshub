@@ -23,8 +23,11 @@ body {
 }
 
 @theme {
-  --color-primary: #4fbf8b;
-  --color-primary-dull: #44ae7c;
+  --color-primary: #a67c52;
+  --color-primary-dull: #8f653b;
+  --color-cream: #faf7f2;
+  --color-ivory: #f5eee6;
+  --color-ivory-dark: #ebe1d5;
 }
 
 /* Remove tap highlight and optimize touch for interactive elements */

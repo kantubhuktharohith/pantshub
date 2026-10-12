@@ -53,7 +53,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
+        <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-[#E8E1D5] bg-[#FDFBF7] relative transition-all">
             <NavLink to='/' onClick={handleNavClick}>
                 <img className="h-9" src={assets.logo} alt="logo"/>
             </NavLink>
@@ -137,8 +137,8 @@ const Navbar = () => {
 
             {/* Mobile Search Bar */}
             {showMobileSearch && (
-                <div className="absolute top-[60px] left-0 w-full bg-white shadow-md px-5 py-3 z-50 mobile-menu-enter sm:hidden">
-                    <div className="flex items-center gap-2 border border-gray-300 px-3 rounded-full">
+                <div className="absolute top-[60px] left-0 w-full bg-[#FDFBF7] shadow-md px-5 py-3 z-50 mobile-menu-enter sm:hidden border-b border-[#E8E1D5]">
+                    <div className="flex items-center gap-2 border border-[#E8E1D5] bg-white px-3 rounded-full">
                         <input 
                             onChange={(e)=> setSearchQuery(e.target.value)} 
                             className="py-2 w-full bg-transparent outline-none placeholder-gray-500 text-sm" 
@@ -162,13 +162,13 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {open && (
-                <div className="absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex flex-col items-start gap-3 px-5 text-sm z-50 mobile-menu-enter sm:hidden">
-                    <NavLink to="/" onClick={handleNavClick} className="w-full py-2 border-b border-gray-100">Home</NavLink>
-                    <NavLink to="/product" onClick={handleNavClick} className="w-full py-2 border-b border-gray-100">All Product</NavLink>
+                <div className="absolute top-[60px] left-0 w-full bg-[#FDFBF7] shadow-md py-4 flex flex-col items-start gap-3 px-5 text-sm z-50 mobile-menu-enter sm:hidden border-b border-[#E8E1D5]">
+                    <NavLink to="/" onClick={handleNavClick} className="w-full py-2 border-b border-[#E8E1D5]/60">Home</NavLink>
+                    <NavLink to="/product" onClick={handleNavClick} className="w-full py-2 border-b border-[#E8E1D5]/60">All Product</NavLink>
                     {user && (
-                        <NavLink to="/my-orders" onClick={handleNavClick} className="w-full py-2 border-b border-gray-100">My Orders</NavLink>
+                        <NavLink to="/my-orders" onClick={handleNavClick} className="w-full py-2 border-b border-[#E8E1D5]/60">My Orders</NavLink>
                     )}
-                    <NavLink to="/" onClick={handleNavClick} className="w-full py-2 border-b border-gray-100">Contact</NavLink>
+                    <NavLink to="/" onClick={handleNavClick} className="w-full py-2 border-b border-[#E8E1D5]/60">Contact</NavLink>
                     {!user ? (
                         <button onClick={()=>{
                             handleNavClick();

@@ -8,7 +8,7 @@ const NewsLatter = () => {
             </p>
             <form className="flex flex-col sm:flex-row items-center justify-between max-w-2xl w-full sm:h-13 gap-3 sm:gap-0">
                 <input
-                    className="border border-gray-300 rounded-md h-12 sm:h-full sm:border-r-0 outline-none w-full sm:rounded-r-none px-3 text-gray-500"
+                    className="border border-[#E0D7C9] bg-white rounded-md h-12 sm:h-full sm:border-r-0 outline-none w-full sm:rounded-r-none px-4 text-gray-700"
                     type="text"
                     placeholder="Enter your email id"
                     required

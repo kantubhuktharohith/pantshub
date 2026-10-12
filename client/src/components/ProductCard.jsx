@@ -9,7 +9,7 @@ const ProductCard = ({product}) => {
     
 
     return product && (
-        <div onClick={()=> {navigate(`/product/${product.category.toLowerCase()}/${product._id}`); scrollTo(0,0)}} className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white w-full">
+        <div onClick={()=> {navigate(`/product/${product.category.toLowerCase()}/${product._id}`); scrollTo(0,0)}} className="border border-[#EADBCC] rounded-xl md:px-4 px-3 py-2 bg-[#FFFDF9] hover:shadow-md transition-all duration-300 w-full">
             <div className="group cursor-pointer flex items-center justify-center px-2">
                 <img className="group-hover:scale-105 transition max-w-26 md:max-w-36" src={product.image[0]} alt={product.name} />
             </div>

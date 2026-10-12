@@ -22,6 +22,8 @@ import black_arrow_icon from "./black_arrow_icon.svg";
 import white_arrow_icon from "./white_arrow_icon.svg";
 import main_banner_bg from "./main_banner_bg.png";
 import main_banner_bg_sm from "./main_banner_bg_sm.png";
+import main_banner_bg_sm_2 from "./main_banner_bg_sm_2.png";
+import main_banner_bg_sm_3 from "./main_banner_bg_sm_3.png";
 import bottom_banner_image from "./bottom_banner_image.png";
 import bottom_banner_image_sm from "./bottom_banner_image_sm.png";
 import add_address_iamge from "./add_address_image.svg";
@@ -78,9 +80,12 @@ import joggers from "./joggers.png";
 import formal_pants from "./formal_pants.png";
 import track_pants from "./track_pants.png";
 import trousers from "./trousers.png";
-
+import main_banner_bg1 from "./main_banner_bg1.png";
+import main_banner_bg2 from "./main_banner_bg2.png";
 
 export const assets = {
+  main_banner_bg1,
+  main_banner_bg2,
   jeans,
   cargo,
   chinos,
@@ -111,6 +116,8 @@ export const assets = {
   white_arrow_icon,
   main_banner_bg,
   main_banner_bg_sm,
+  main_banner_bg_sm_2,
+  main_banner_bg_sm_3,
   bottom_banner_image,
   bottom_banner_image_sm,
   add_address_iamge,
@@ -122,43 +129,43 @@ export const categories = [
     text: "Jeans",
     path: "Jeans",
     image: jeans,
-    bgColor: "#FEF6DA",
+    bgColor: "#F7F1E5",
   },
   {
     text: "Cargo",
     path: "Cargo",
     image: cargo,
-    bgColor: "#FEE0E0",
+    bgColor: "#EFE6D8",
   },
   {
     text: "Chinos",
     path: "Chinos",
     image: chinos,
-    bgColor: "#F0F5DE",
+    bgColor: "#F3ECE2",
   },
   {
     text: "Joggers",
     path: "Joggers",
     image: joggers,
-    bgColor: "#E1F5EC",
+    bgColor: "#ECE4D8",
   },
   {
     text: "Formal Pants",
     path: "Formal Pants",
     image: formal_pants,
-    bgColor: "#FEE6CD",
+    bgColor: "#F5EBE1",
   },
   {
     text: "Track Pants",
     path: "Track Pants",
     image: track_pants,
-    bgColor: "#E0F6FE",
+    bgColor: "#EDE5DB",
   },
   {
     text: "Trousers",
     path: "Trousers",
     image: trousers,
-    bgColor: "#F1E3F9",
+    bgColor: "#F2EAE0",
   },
 ];
 
@@ -316,7 +323,6 @@ export const dummyProducts = [
     updatedAt: "2025-03-26T08:00:00.000Z",
     inStock: true,
   },
-
 
   // Fruits
   {
