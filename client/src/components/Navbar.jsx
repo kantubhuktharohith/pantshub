@@ -90,6 +90,7 @@ const Navbar = () => {
                             <ul className='absolute top-12 right-0 bg-white shadow-lg border border-gray-200 py-2.5 w-36 rounded-md text-sm z-40'>
                                 <li onClick={()=> {navigate("/profile"); setShowProfileMenu(false)}} className='p-2 pl-4 hover:bg-primary/10 cursor-pointer'>My Profile</li>
                                 <li onClick={()=> {navigate("my-orders"); setShowProfileMenu(false)}} className='p-2 pl-4 hover:bg-primary/10 cursor-pointer'>My Orders</li>
+                                <li onClick={()=> {navigate("/wishlist"); setShowProfileMenu(false)}} className='p-2 pl-4 hover:bg-primary/10 cursor-pointer'>My Wishlist</li>
                                 <li onClick={()=> {logout(); setShowProfileMenu(false)}} className='p-2 pl-4 hover:bg-primary/10 cursor-pointer'>Logout</li>
                             </ul>
                         )}
@@ -120,6 +121,7 @@ const Navbar = () => {
                             <ul className='absolute top-10 right-0 bg-white shadow-lg border border-gray-200 py-2.5 w-36 rounded-md text-sm z-40'>
                                 <li onClick={()=> {navigate("/profile"); setShowProfileMenu(false)}} className='p-2 pl-4 hover:bg-primary/10 cursor-pointer'>My Profile</li>
                                 <li onClick={()=> {navigate("my-orders"); setShowProfileMenu(false)}} className='p-2 pl-4 hover:bg-primary/10 cursor-pointer'>My Orders</li>
+                                <li onClick={()=> {navigate("/wishlist"); setShowProfileMenu(false)}} className='p-2 pl-4 hover:bg-primary/10 cursor-pointer'>My Wishlist</li>
                                 <li onClick={()=> {logout(); setShowProfileMenu(false)}} className='p-2 pl-4 hover:bg-primary/10 cursor-pointer'>Logout</li>
                             </ul>
                         )}

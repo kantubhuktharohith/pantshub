@@ -25,7 +25,7 @@ const AddAddress = () => {
         street: '',
         city: '',
         state: '',
-        zipcode: '',
+        pincode: '',
         country: '',
         phone: '',
     })
@@ -79,7 +79,7 @@ const AddAddress = () => {
                     </div>
                         
                         <div className='grid grid-cols-2 gap-4'>
-                        <InputField handleChange={handleChange} address={address} name='zipcode' type="number" placeholder="Zipcode"/>
+                        <InputField handleChange={handleChange} address={address} name='pincode' type="number" placeholder="Pincode"/>
                         <InputField handleChange={handleChange} address={address} name='country' type="text" placeholder="Country"/>
                         </div>
 

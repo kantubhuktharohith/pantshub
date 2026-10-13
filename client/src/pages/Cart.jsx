@@ -4,7 +4,7 @@ import { assets, dummyAddress } from "../assets/assets";
 import toast from "react-hot-toast";
 
 const Cart = () => {
-    const { products, currency, cartItems, removeFromCart, getCartCount, updateCartItem, navigate, getCartAmount, axios, user, setCartItems } = useAppContext()
+    const { products, currency, cartItems, removeFromCart, deleteCartItem, getCartCount, updateCartItem, navigate, getCartAmount, axios, user, setCartItems } = useAppContext()
     const [cartArray, setCartArray] = useState([])
     const [addresses, setAddresses] = useState([])
     const [showAddress, setShowAddress] = useState(false)
@@ -15,9 +15,15 @@ const Cart = () => {
     const getCart = () => {
         let tempArray = []
         for (const key in cartItems) {
-            const product = products.find((item) => item._id === key)
-            if (product) {
-                tempArray.push({ ...product, quantity: cartItems[key] })
+            const [productId, size] = key.includes('__') ? key.split('__') : [key, null]
+            const product = products.find((item) => item._id === productId)
+            if (product && cartItems[key] > 0) {
+                tempArray.push({
+                    ...product,
+                    cartKey: key,
+                    size: size || null,
+                    quantity: cartItems[key]
+                })
             }
         }
         setCartArray(tempArray)
@@ -100,41 +106,67 @@ const Cart = () => {
         <div className="flex flex-col md:flex-row mt-16 gap-6 md:gap-0">
             <div className='flex-1 max-w-4xl'>
                 <h1 className="text-3xl font-medium mb-6">
-                    Shopping Cart <span className="text-sm text-primary">{getCartCount()} Items</span>
+                    Shopping Cart <span className="text-sm text-primary">{getCartCount()} Pieces</span>
                 </h1>
 
-                <div className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 text-sm md:text-base font-medium pb-3">
-                    <p className="text-left">Product Details</p>
+                <div className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 text-sm md:text-base font-medium pb-3 border-b border-gray-200">
+                    <p className="text-left">Product & Size Details</p>
                     <p className="text-center">Subtotal</p>
                     <p className="text-center">Action</p>
                 </div>
 
                 {cartArray.map((product, index) => (
-                    <div key={index} className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-sm md:text-base font-medium pt-3">
+                    <div key={index} className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-sm md:text-base font-medium py-3 border-b border-gray-100">
                         <div className="flex items-center md:gap-6 gap-3">
                             <div onClick={() => {
                                 navigate(`/product/${product.category.toLowerCase()}/${product._id}`); scrollTo(0, 0)
-                            }} className="cursor-pointer w-24 h-24 flex items-center justify-center border border-gray-300 rounded">
+                            }} className="cursor-pointer w-24 h-24 flex items-center justify-center border border-gray-300 rounded shrink-0 bg-white">
                                 <img className="max-w-full h-full object-cover" src={product.image[0]} alt={product.name} />
                             </div>
                             <div>
-                                <p className="font-semibold text-sm md:text-base line-clamp-2">{product.name}</p>
-                                <div className="font-normal text-gray-500/70">
-                                    <p>Weight: <span>{product.weight || "N/A"}</span></p>
-                                    <div className='flex items-center'>
-                                        <p>Qty:</p>
-                                        <select onChange={e => updateCartItem(product._id, Number(e.target.value))} value={cartItems[product._id]} className='outline-none'>
-                                            {Array(cartItems[product._id] > 9 ? cartItems[product._id] : 9).fill('').map((_, index) => (
-                                                <option key={index} value={index + 1}>{index + 1}</option>
-                                            ))}
-                                        </select>
+                                <p className="font-semibold text-sm md:text-base line-clamp-2 text-gray-800">{product.name}</p>
+                                <div className="font-normal text-gray-500/70 mt-1">
+                                    {product.size && (
+                                        <div className="flex items-center gap-2 mb-1.5">
+                                            <span className="inline-block px-2.5 py-0.5 rounded text-xs font-semibold bg-primary text-white">
+                                                Size: {product.size}
+                                            </span>
+                                            <span className="text-xs text-gray-400">Wholesale pant</span>
+                                        </div>
+                                    )}
+                                    <div className='flex items-center gap-2'>
+                                        <p className="text-xs md:text-sm font-medium text-gray-700">Pieces:</p>
+                                        <div className="flex items-center border border-gray-300 rounded bg-white overflow-hidden shadow-xs">
+                                            <button
+                                                onClick={() => updateCartItem(product.cartKey, Math.max(1, product.quantity - 1))}
+                                                className="px-2.5 py-1 hover:bg-gray-100 text-gray-700 font-bold transition text-xs"
+                                                title="Decrease 1 piece"
+                                            >
+                                                -
+                                            </button>
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                value={product.quantity}
+                                                onChange={e => updateCartItem(product.cartKey, Math.max(1, parseInt(e.target.value) || 1))}
+                                                className="w-14 text-center text-gray-800 font-semibold outline-none text-xs md:text-sm py-0.5"
+                                            />
+                                            <button
+                                                onClick={() => updateCartItem(product.cartKey, product.quantity + 1)}
+                                                className="px-2.5 py-1 hover:bg-gray-100 text-gray-700 font-bold transition text-xs"
+                                                title="Increase 1 piece"
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                        <span className="text-xs text-gray-400">@ {currency}{product.offerPrice}/pc</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <p className="text-center">{currency}{product.offerPrice * product.quantity}</p>
-                        <button onClick={() => removeFromCart(product._id)} className="cursor-pointer mx-auto">
-                            <img src={assets.remove_icon} alt="remove" className="inline-block w-6 h-6" />
+                        <p className="text-center font-semibold text-gray-800">{currency}{product.offerPrice * product.quantity}</p>
+                        <button onClick={() => deleteCartItem ? deleteCartItem(product.cartKey) : removeFromCart(product.cartKey)} className="cursor-pointer mx-auto p-2 hover:bg-red-50 rounded-full transition" title="Remove size item">
+                            <img src={assets.remove_icon} alt="remove" className="inline-block w-5 h-5" />
                         </button>
                     </div>)
                 )}
