@@ -55,7 +55,8 @@ const Navbar = () => {
     return (
         <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-[#E8E1D5] bg-[#FDFBF7] relative transition-all">
             <NavLink to='/' onClick={handleNavClick}>
-                <img className="h-9" src={assets.logo} alt="logo"/>
+                <h1 className='text-4xl font-bold tracking-tight text-center'><span className="text-[#A17A3C]">Saa</span>
+                <span className="text-[#172B3A]">Goo</span></h1>
             </NavLink>
 
             {/* Desktop Navigation */}
@@ -168,7 +169,7 @@ const Navbar = () => {
                     {user && (
                         <NavLink to="/my-orders" onClick={handleNavClick} className="w-full py-2 border-b border-[#E8E1D5]/60">My Orders</NavLink>
                     )}
-                    <NavLink to="/" onClick={handleNavClick} className="w-full py-2 border-b border-[#E8E1D5]/60">Contact</NavLink>
+                    <NavLink to="/footer" onClick={handleNavClick} className="w-full py-2 border-b border-[#E8E1D5]/60">Contact</NavLink>
                     {!user ? (
                         <button onClick={()=>{
                             handleNavClick();
